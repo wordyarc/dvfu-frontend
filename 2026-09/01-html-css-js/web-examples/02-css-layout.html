@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пример 2 — CSS</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #172033;
+        font-family: system-ui, sans-serif;
+        background: #f4f6f8;
+      }
+
+      main {
+        width: min(100% - 32px, 800px);
+        margin-inline: auto;
+        padding-block: 32px;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .toolbar p {
+        margin: 0;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 20px;
+        border: 2px solid #dbe2ea;
+        border-radius: 12px;
+        background: white;
+      }
+
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+      }
+
+      .card--done {
+        border-color: #86efac;
+        background: #f0fdf4;
+      }
+
+      button {
+        padding: 8px 12px;
+        border: 0;
+        border-radius: 6px;
+        color: white;
+        background: #2563eb;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      button:focus-visible {
+        outline: 3px solid #93c5fd;
+        outline-offset: 3px;
+      }
+
+      @media (min-width: 48rem) {
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>CSS: сетка карточек</h1>
+
+      <div class="toolbar">
+        <p>Научимся отличать Grid от Flexbox.</p>
+        <button type="button">Добавить</button>
+      </div>
+
+      <section class="cards" aria-label="Карточки тем">
+        <article class="card card--done">
+          <h2>Box model</h2>
+          <p>Content, padding, border и margin.</p>
+        </article>
+        <article class="card">
+          <h2>Flexbox</h2>
+          <p>Расположение элементов вдоль одной оси.</p>
+        </article>
+        <article class="card">
+          <h2>Grid</h2>
+          <p>Сетка со строками и столбцами.</p>
+        </article>
+        <article class="card">
+          <h2>Адаптивность</h2>
+          <p>На узком экране один столбец, на широком — два.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

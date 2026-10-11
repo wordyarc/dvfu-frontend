@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пример 3 — DOM и события</title>
+    <style>
+      body {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 32px 16px;
+        color: #172033;
+        font-family: system-ui, sans-serif;
+      }
+
+      .task {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid #dbe2ea;
+        border-radius: 8px;
+      }
+
+      .task.done span {
+        color: #6b7280;
+        text-decoration: line-through;
+      }
+
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Мои задачи</h1>
+
+    <div class="task" id="task">
+      <span id="task-text">Прочитать про DOM</span>
+      <button id="toggle-task" type="button">Готово</button>
+    </div>
+
+    <p id="status">Задача ещё не выполнена</p>
+
+    <script>
+      const task = document.querySelector("#task");
+      const taskText = document.querySelector("#task-text");
+      const button = document.querySelector("#toggle-task");
+      const status = document.querySelector("#status");
+
+      button.addEventListener("click", () => {
+        const completed = task.classList.toggle("done");
+
+        taskText.textContent = completed
+          ? "Прочитать про DOM — готово"
+          : "Прочитать про DOM";
+
+        button.textContent = completed ? "Вернуть" : "Готово";
+        status.textContent = completed
+          ? "Состояние изменено через DOM"
+          : "Задача снова активна";
+      });
+    </script>
+  </body>
+</html>

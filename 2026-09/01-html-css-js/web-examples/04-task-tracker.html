@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пример 4 — список задач</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 16px;
+        color: #172033;
+        font-family: system-ui, sans-serif;
+      }
+
+      form {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      input {
+        min-width: 0;
+        flex: 1;
+        padding: 10px;
+      }
+
+      button {
+        padding: 10px 14px;
+        cursor: pointer;
+      }
+
+      ul {
+        display: grid;
+        gap: 8px;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid #dbe2ea;
+        border-radius: 8px;
+      }
+
+      li.done span {
+        color: #6b7280;
+        text-decoration: line-through;
+      }
+
+      .error {
+        min-height: 1.5em;
+        color: #b91c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Список задач</h1>
+    <p id="counter">Активных задач: 0</p>
+
+    <form id="task-form">
+      <label for="task-input">Новая задача</label>
+      <input id="task-input" name="title" required>
+      <button type="submit">Добавить</button>
+    </form>
+
+    <p class="error" id="error" aria-live="polite"></p>
+    <ul id="task-list"></ul>
+
+    <script>
+      const form = document.querySelector("#task-form");
+      const input = document.querySelector("#task-input");
+      const list = document.querySelector("#task-list");
+      const counter = document.querySelector("#counter");
+      const error = document.querySelector("#error");
+
+      function updateCounter() {
+        const activeCount = list.querySelectorAll("li:not(.done)").length;
+        counter.textContent = `Активных задач: ${activeCount}`;
+      }
+
+      function createTask(title) {
+        const item = document.createElement("li");
+        const text = document.createElement("span");
+        const doneButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
+
+        text.textContent = title;
+
+        doneButton.type = "button";
+        doneButton.textContent = "Готово";
+        doneButton.addEventListener("click", () => {
+          item.classList.toggle("done");
+          doneButton.textContent = item.classList.contains("done")
+            ? "Вернуть"
+            : "Готово";
+          updateCounter();
+        });
+
+        deleteButton.type = "button";
+        deleteButton.textContent = "Удалить";
+        deleteButton.addEventListener("click", () => {
+          item.remove();
+          updateCounter();
+        });
+
+        item.append(text, doneButton, deleteButton);
+        return item;
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const title = input.value.trim();
+
+        if (!title) {
+          error.textContent = "Введите название задачи";
+          input.focus();
+          return;
+        }
+
+        error.textContent = "";
+        list.append(createTask(title));
+        form.reset();
+        input.focus();
+        updateCounter();
+      });
+    </script>
+  </body>
+</html>

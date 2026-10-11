@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пример 1 — HTML</title>
+  </head>
+  <body>
+    <header>
+      <h1>Учебный план</h1>
+      <nav aria-label="Основная навигация">
+        <a href="#topics">Темы</a>
+        <a href="#practice">Практика</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="topics" aria-labelledby="topics-title">
+        <h2 id="topics-title">Темы на сегодня</h2>
+        <ol>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ol>
+      </section>
+
+      <section id="practice" aria-labelledby="practice-title">
+        <h2 id="practice-title">Добавить тему</h2>
+        <form action="/topics" method="get">
+          <label for="topic">Название темы</label>
+          <input id="topic" name="topic" required>
+          <button type="submit">Добавить</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
