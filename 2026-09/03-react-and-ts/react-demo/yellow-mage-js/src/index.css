@@ -1,0 +1,85 @@
+:root {
+  font: 16px/1.5 system-ui, sans-serif;
+  color: #2b2618;
+  background: #fbf3d1;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: grid;
+  gap: 16px;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.stat {
+  display: grid;
+  gap: 4px;
+}
+
+progress {
+  width: 100%;
+  accent-color: #e0a800;
+}
+
+ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li,
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row input:first-child {
+  flex: 1;
+}
+
+.row input[type="number"] {
+  width: 64px;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid #d8cfa8;
+  border-radius: 6px;
+}
+
+button {
+  border-color: transparent;
+  background: #f5c518;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
